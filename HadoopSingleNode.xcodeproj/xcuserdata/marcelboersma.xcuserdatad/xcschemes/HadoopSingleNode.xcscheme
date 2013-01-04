@@ -20,6 +20,20 @@
                ReferencedContainer = "container:HadoopSingleNode.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "47D1C43B167F635F00CC0C2F"
+               BuildableName = "HadoopSingleNodeTests.octest"
+               BlueprintName = "HadoopSingleNodeTests"
+               ReferencedContainer = "container:HadoopSingleNode.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction

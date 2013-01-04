@@ -1,10 +1,18 @@
-//
-//  MBHadoopController.m
-//  Hadoop app
-//
-//  Created by Marcel Boersma on 12/8/12.
-//  Copyright (c) 2012 Marcel Boersma. All rights reserved.
-//
+//# Licensed to the Apache Software Foundation (ASF) under one or more
+//# contributor license agreements.  See the NOTICE file distributed with
+//# this work for additional information regarding copyright ownership.
+//# The ASF licenses this file to You under the Apache License, Version 2.0
+//# (the "License"); you may not use this file except in compliance with
+//# the License.  You may obtain a copy of the License at
+//#
+//#     http://www.apache.org/licenses/LICENSE-2.0
+//#
+//# Unless required by applicable law or agreed to in writing, software
+//# distributed under the License is distributed on an "AS IS" BASIS,
+//# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//# See the License for the specific language governing permissions and
+//# limitations under the License.
+
 
 #import "MBHadoopController.h"
 #include <unistd.h>
@@ -13,14 +21,13 @@
 static MBHadoopController *controller;
 
 typedef void (^asyncTask)(void);
-typedef void (^asyncJob)(NSDictionary *dict);
 
 @interface MBHadoopController (Hidden)
 -(void)setHadoopIsRunning:(BOOL)aBool;
 @end
 
 @implementation MBHadoopController
-@synthesize jarPath, args;
+@synthesize jarPath, args, logOutput;
 
 +(MBHadoopController*)sharedHadoop
 {
@@ -52,11 +59,6 @@ typedef void (^asyncJob)(NSDictionary *dict);
 }
 
 
-
--(void)runExample
-{
-        
-}
 
 
 -(void)runJobWithPath:(NSString*)aPath andArguments:(NSArray*)someArgs
@@ -93,28 +95,25 @@ typedef void (^asyncJob)(NSDictionary *dict);
         NSString *hadoopExecutablePath = [hadoopBundle pathForResource:@"bin/hadoop" ofType:nil];
         
         
-        NSArray *arguments = [[NSArray alloc] initWithArray:[self args]];
+        //NSArray *arguments = [[NSArray alloc] initWithArray:[self args]];
         
-        NSTask *example = [[NSTask alloc] init];
-        [example setLaunchPath:hadoopExecutablePath];
-        [example setArguments:arguments];
+        NSMutableArray *arguments = [[NSMutableArray alloc] initWithArray:[NSArray arrayWithObjects:@"jar", [self jarPath], nil]];
         
-        
-        NSPipe *pipe = [[NSPipe alloc] init];
-        [example setStandardOutput:pipe];
+        [arguments addObjectsFromArray:[self args]];
         
         
-        [example launch];
+        NSTask *job = [[NSTask alloc] init];
+        [job setLaunchPath:hadoopExecutablePath];
+        [job setArguments:arguments];
         
         
-        NSFileHandle *file = [pipe fileHandleForReading];
-        
-        NSData *output = [file readDataToEndOfFile];
-        
-        NSString *outputString = [[NSString alloc] initWithData:output encoding:NSUTF8StringEncoding];
-        NSLog (@"Jar is %s:\n", [outputString UTF8String]);
-        
+
+        [job launch];
+        [job waitUntilExit];
+      
         dispatch_async(dispatch_get_main_queue(), ^{
+            //due to threading and KVC the setValue needs to be called in the main thread
+            
             [[MBMonitorMessages sharedMonitorMessages] setDescription:@"Done" ];
             [[MBMonitorMessages sharedMonitorMessages] stopProgressIndicator];
         });
@@ -143,7 +142,7 @@ typedef void (^asyncJob)(NSDictionary *dict);
         //create a taks to run hadoop
         NSTask *runHadoop = [[NSTask alloc] init];
         
-        NSString *hadoop = [hadoopBundle pathForResource:@"bin/start-all.sh" ofType:nil];
+        NSString *hadoop = [hadoopBundle pathForResource:@"bin/start-mapred.sh" ofType:nil];
         
 
         NSDictionary *defaultEnvironment = [[NSProcessInfo processInfo] environment];
@@ -157,20 +156,10 @@ typedef void (^asyncJob)(NSDictionary *dict);
         [runHadoop setEnvironment:environment];
         [runHadoop setLaunchPath:hadoop];
         
-        
-        NSPipe *pipe = [NSPipe pipe];
-        [runHadoop setStandardOutput:pipe];
-        
-        NSFileHandle *file = [pipe fileHandleForReading];
-        
+             
         [runHadoop launch];
-        
-        NSData *output = [file readDataToEndOfFile];
-        
-        NSString *string;
-        string = [[NSString alloc] initWithData: output encoding: NSUTF8StringEncoding];
-        NSLog (@"hadoop returned:\n%@", string);
-         
+         [runHadoop waitUntilExit];
+             
          dispatch_async(dispatch_get_main_queue(), ^{
              [[MBMonitorMessages sharedMonitorMessages] setMessage:@"Hadoop is up and running"];
              [[MBMonitorMessages sharedMonitorMessages] stopProgressIndicator];
@@ -212,7 +201,7 @@ typedef void (^asyncJob)(NSDictionary *dict);
             //create a taks to run hadoop
             NSTask *stopHadoopTask = [[NSTask alloc] init];
             
-            NSString *hadoop = [hadoopBundle pathForResource:@"bin/stop-all.sh" ofType:nil];
+            NSString *hadoop = [hadoopBundle pathForResource:@"bin/stop-mapred.sh" ofType:nil];
             
             
             NSDictionary *defaultEnvironment = [[NSProcessInfo processInfo] environment];
@@ -226,23 +215,14 @@ typedef void (^asyncJob)(NSDictionary *dict);
             [stopHadoopTask setEnvironment:environment];
             [stopHadoopTask setLaunchPath:hadoop];
             
-            
-            NSPipe *pipe = [NSPipe pipe];
-            [stopHadoopTask setStandardOutput:pipe];
-            
-            NSFileHandle *file = [pipe fileHandleForReading];
-            
+                     
             [stopHadoopTask launch];
-            
-            NSData *output = [file readDataToEndOfFile];
-            
-            NSString *string;
-            string = [[NSString alloc] initWithData: output encoding: NSUTF8StringEncoding];
-            NSLog (@"hadoop stopping returned:\n%@", string);
-            
+            [stopHadoopTask waitUntilExit];
+         
             dispatch_async(dispatch_get_main_queue(), ^{
                 [[MBMonitorMessages sharedMonitorMessages] setMessage:@""];
                 [[MBMonitorMessages sharedMonitorMessages] stopProgressIndicator];
+                [[MBMonitorMessages sharedMonitorMessages] setDescription:@""];
             });
             
             [self setHadoopIsRunning:NO];

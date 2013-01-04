@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'hadoop' target in the 'hadoop' project
+//
+
+#ifdef __OBJC__
+    #import <Cocoa/Cocoa.h>
+#endif

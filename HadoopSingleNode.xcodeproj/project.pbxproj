@@ -11,6 +11,9 @@
 		47508F9C1691AA1600E3D72A /* info.png in Resources */ = {isa = PBXBuildFile; fileRef = 47508F9B1691AA1600E3D72A /* info.png */; };
 		47508F9F1691B7A600E3D72A /* MBDragJarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 47508F9E1691B7A600E3D72A /* MBDragJarView.m */; };
 		47508FAB1691C08100E3D72A /* hadooplogo.icns in Resources */ = {isa = PBXBuildFile; fileRef = 47508FAA1691C08100E3D72A /* hadooplogo.icns */; };
+		475FA9E91694C27500B48FFF /* logs.png in Resources */ = {isa = PBXBuildFile; fileRef = 475FA9E81694C27500B48FFF /* logs.png */; };
+		475FA9ED1694C56D00B48FFF /* drag done.png in Resources */ = {isa = PBXBuildFile; fileRef = 475FA9EC1694C56D00B48FFF /* drag done.png */; };
+		476415A2169767060019ABCD /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = 476415A1169767060019ABCD /* LICENSE.txt */; };
 		476645BC16888A78004D6ED8 /* play.png in Resources */ = {isa = PBXBuildFile; fileRef = 476645BB16888A78004D6ED8 /* play.png */; };
 		476645CA168892E6004D6ED8 /* stop.png in Resources */ = {isa = PBXBuildFile; fileRef = 476645C9168892E6004D6ED8 /* stop.png */; };
 		4774FA0D167F63BA00BF1024 /* HeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4774FA0C167F63BA00BF1024 /* HeaderView.xib */; };
@@ -46,6 +49,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		4742505A1693665600D22EF0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 474250531693665600D22EF0 /* hadoop.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 47501DEF1673D908002BCCDB;
+			remoteInfo = hadoop;
+		};
 		47D1C440167F635F00CC0C2F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 47D1C412167F635F00CC0C2F /* Project object */;
@@ -76,12 +86,16 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		474250531693665600D22EF0 /* hadoop.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = hadoop.xcodeproj; path = hadoop/hadoop.xcodeproj; sourceTree = "<group>"; };
 		47508F9416919E4F00E3D72A /* MBJobViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBJobViewController.h; sourceTree = "<group>"; };
 		47508F9516919E4F00E3D72A /* MBJobViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBJobViewController.m; sourceTree = "<group>"; };
 		47508F9B1691AA1600E3D72A /* info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = info.png; sourceTree = "<group>"; };
 		47508F9D1691B7A500E3D72A /* MBDragJarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBDragJarView.h; sourceTree = "<group>"; };
 		47508F9E1691B7A600E3D72A /* MBDragJarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBDragJarView.m; sourceTree = "<group>"; };
 		47508FAA1691C08100E3D72A /* hadooplogo.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = hadooplogo.icns; sourceTree = "<group>"; };
+		475FA9E81694C27500B48FFF /* logs.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logs.png; sourceTree = "<group>"; };
+		475FA9EC1694C56D00B48FFF /* drag done.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "drag done.png"; sourceTree = "<group>"; };
+		476415A1169767060019ABCD /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		476645BB16888A78004D6ED8 /* play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play.png; sourceTree = "<group>"; };
 		476645C9168892E6004D6ED8 /* stop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stop.png; sourceTree = "<group>"; };
 		4774FA0C167F63BA00BF1024 /* HeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeaderView.xib; sourceTree = "<group>"; };
@@ -148,6 +162,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		474250541693665600D22EF0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4742505B1693665600D22EF0 /* hadoop.bundle */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		4774FA2D167F640500BF1024 /* hadoop */ = {
 			isa = PBXGroup;
 			children = (
@@ -168,6 +190,7 @@
 				4774FA15167F63D600BF1024 /* MBRounderCornerView.m */,
 				4774FA16167F63D600BF1024 /* MBWindow.h */,
 				4774FA17167F63D600BF1024 /* MBWindow.m */,
+				476415A1169767060019ABCD /* LICENSE.txt */,
 			);
 			name = "custom window";
 			sourceTree = "<group>";
@@ -186,6 +209,7 @@
 		47D1C410167F635F00CC0C2F = {
 			isa = PBXGroup;
 			children = (
+				474250531693665600D22EF0 /* hadoop.xcodeproj */,
 				47508FAA1691C08100E3D72A /* hadooplogo.icns */,
 				47D1C453167F637500CC0C2F /* hadoop.xcodeproj */,
 				47D1C425167F635F00CC0C2F /* HadoopSingleNode */,
@@ -242,8 +266,10 @@
 		47D1C426167F635F00CC0C2F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				475FA9EC1694C56D00B48FFF /* drag done.png */,
 				47DBFAC2168DD2B900480535 /* drag here.png */,
 				476645BB16888A78004D6ED8 /* play.png */,
+				475FA9E81694C27500B48FFF /* logs.png */,
 				4774FA1D167F63F900BF1024 /* x.png */,
 				4774FA1F167F63F900BF1024 /* bar.png */,
 				476645C9168892E6004D6ED8 /* stop.png */,
@@ -363,6 +389,10 @@
 					ProductGroup = 47D1C454167F637500CC0C2F /* Products */;
 					ProjectRef = 47D1C453167F637500CC0C2F /* hadoop.xcodeproj */;
 				},
+				{
+					ProductGroup = 474250541693665600D22EF0 /* Products */;
+					ProjectRef = 474250531693665600D22EF0 /* hadoop.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
@@ -373,6 +403,13 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		4742505B1693665600D22EF0 /* hadoop.bundle */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = hadoop.bundle;
+			remoteRef = 4742505A1693665600D22EF0 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		47D1C458167F637500CC0C2F /* hadoop.bundle */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
@@ -401,6 +438,9 @@
 				47DBFAC3168DD2B900480535 /* drag here.png in Resources */,
 				47508F9C1691AA1600E3D72A /* info.png in Resources */,
 				47508FAB1691C08100E3D72A /* hadooplogo.icns in Resources */,
+				475FA9E91694C27500B48FFF /* logs.png in Resources */,
+				475FA9ED1694C56D00B48FFF /* drag done.png in Resources */,
+				476415A2169767060019ABCD /* LICENSE.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
