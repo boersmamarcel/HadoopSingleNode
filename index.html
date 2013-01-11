@@ -42,6 +42,15 @@
 
 <p>The repo doesn't contain a dmg image for the app so you need to download the github repository and open the xcode project. After building it in xcode you can use your app!</p>
 
+<h3>Running a job</h3>
+
+<p>If Hadoop is up and running you can drag and drop your jar file in the app. Then type in the arguments for the your MapReduce job.</p>
+
+<p>The <a href="http://hadoop.apache.org/docs/r0.20.2/mapred_tutorial.html">Hadoop WordCount</a> can be run by dragging the jar file into the respective drop area and then type this as your argument:</p>
+
+<pre><code>WordCount /path/to/input/file /path/to/results/output/
+</code></pre>
+
 <h3>Future releases</h3>
 
 <p>This app is really simple and only supports single node setup for Hadoop. For future releases it might be awesome to include several config files for Hadoop so you can run the files on the cluster instead of one single node. </p>
