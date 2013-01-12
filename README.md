@@ -2,6 +2,7 @@
 HadoopSingleNode is an app that provides a click and play solution for Hadoop on Mac OS X. You can just hit play and debug your MapReduce programs in a blink of an eye.
 
 Here are some screenshots:
+
 ![Play](http://i50.tinypic.com/rw4fhy.png)
 ![Your own jobs](http://i46.tinypic.com/35ycm.png)
 
